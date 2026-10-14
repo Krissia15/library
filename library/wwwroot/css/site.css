@@ -29,3 +29,56 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+/* Library system custom design */
+body {
+    background-color: #f4f6fb;
+    color: #26324a;
+    font-family: "Segoe UI", sans-serif;
+}
+
+h1 {
+    color: #243b70;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.container {
+    padding-top: 20px;
+}
+
+.btn-primary {
+    background-color: #3859a6;
+    border-color: #3859a6;
+    border-radius: 8px;
+}
+
+    .btn-primary:hover {
+        background-color: #243b70;
+        border-color: #243b70;
+    }
+
+.table {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+    .table thead th {
+        background-color: #243b70;
+        color: white;
+        padding: 14px;
+    }
+
+    .table tbody td {
+        padding: 12px;
+        vertical-align: middle;
+    }
+
+    .table tbody tr:hover {
+        background-color: #eaf0ff;
+    }
+
+.badge {
+    border-radius: 6px;
+    padding: 6px 9px;
+}
