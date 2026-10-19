@@ -22,6 +22,7 @@ builder.Services.AddSingleton(dataSource);
 // Repositories: one new object per web request.
 builder.Services.AddScoped<BookRepository>();
 builder.Services.AddScoped<MemberRepository>();
+builder.Services.AddScoped<NoteRepository>();
 
 
 
