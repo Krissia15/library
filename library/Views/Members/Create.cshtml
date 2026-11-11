@@ -1,43 +1,55 @@
 ﻿@model Member
+
 @{
     ViewData["Title"] = "Add a member";
 }
 
-<h1 class="mb-3">Add a member</h1>
+<div class="p-4 mb-4 rounded-4" style="background: linear-gradient(135deg, #e8f1ff, #f5f8ff);">
+    <p class="text-primary fw-semibold mb-1">MEMBER MANAGEMENT</p>
+    <h1 class="fw-bold mb-1">Add a Member</h1>
+    <p class="text-muted mb-0">Enter the member's information below.</p>
+</div>
 
-<form asp-action="Create" method="post" class="card card-body" style="max-width:36rem">
-    <div class="mb-3">
-        <label asp-for="FullName" class="form-label"></label>
-        <input asp-for="FullName" class="form-control" />
-        <span asp-validation-for="FullName" class="text-danger"></span>
-    </div>
+<div class="card border-0 shadow-sm rounded-4" style="max-width: 36rem;">
+    <div class="card-body p-4">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger rounded-3"></div>
 
-    <div class="mb-3">
-        <label asp-for="Email" class="form-label"></label>
-        <input asp-for="Email" class="form-control" />
-        <span asp-validation-for="Email" class="text-danger"></span>
-    </div>
+            <div class="mb-3">
+                <label asp-for="FullName" class="form-label fw-semibold">Full Name</label>
+                <input asp-for="FullName" class="form-control" placeholder="Lastname, Firstname" />
+                <span asp-validation-for="FullName" class="text-danger small"></span>
+            </div>
 
-    <div class="mb-3">
-        <label asp-for="MemberType" class="form-label"></label>
-        <select asp-for="MemberType" class="form-select">
-            <option value="">(none)</option>
-            <option value="Regular">Regular</option>
-            <option value="Student">Student</option>
-            <option value="Faculty">Faculty</option>
-        </select>
-        <span asp-validation-for="MemberType" class="text-danger"></span>
-    </div>
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label fw-semibold">Email Address</label>
+                <input asp-for="Email" class="form-control" placeholder="example@email.com" />
+                <span asp-validation-for="Email" class="text-danger small"></span>
+            </div>
 
-    <div>
-        <button type="submit" class="btn btn-primary">Save</button>
-        <a asp-action="Index" class="btn btn-link">Cancel</a>
+            <div class="mb-4">
+                <label asp-for="MemberType" class="form-label fw-semibold">Member Type</label>
+                <select asp-for="MemberType" class="form-select">
+                    <option value="">(choose member type)</option>
+                    <option value="Regular">Regular</option>
+                    <option value="Student">Student</option>
+                    <option value="Faculty">Faculty</option>
+                </select>
+                <span asp-validation-for="MemberType" class="text-danger small"></span>
+            </div>
+
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-primary rounded-pill px-4">
+                    Save Member
+                </button>
+                <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-4">
+                    Cancel
+                </a>
+            </div>
+        </form>
     </div>
-    @section Scripts {
+</div>
+
+@section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
-
-
-
-</form>
-

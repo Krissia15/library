@@ -1,50 +1,89 @@
-﻿
-@model List<LoanView>
+﻿@model List<LoanView>
+
 @{
     ViewData["Title"] = "Loans";
 }
 
-<div class="d-flex justify-content-between align-items-center mb-3">
-    <div>
-        <h1 class="mb-0">Loans</h1>
-        <p class="text-muted mb-0">@Model.Count loans, newest first</p>
+<div class="p-4 mb-4 rounded-4" style="background: linear-gradient(135deg, #e8f1ff, #f5f8ff);">
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+        <div>
+            <p class="text-primary fw-semibold mb-1">LIBRARY MANAGEMENT</p>
+            <h1 class="fw-bold mb-1">Book Loans</h1>
+            <p class="text-muted mb-0">Keep track of borrowed books and their return dates.</p>
+        </div>
+
+        <a asp-action="Borrow" class="btn btn-primary rounded-pill px-4">
+            + Borrow a book
+        </a>
     </div>
-    <a asp-action="Borrow" class="btn btn-primary">Borrow a book</a>
 </div>
 
-<table class="table table-striped table-hover align-middle">
-    <thead class="table-dark">
-        <tr>
-            <th>Member</th>
-            <th>Book</th>
-            <th>Loaned</th>
-            <th>Due</th>
-            <th>Status</th>
-            <th style="width:7rem"></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var loan in Model)
-        {
-            <tr>
-                <td>@loan.MemberName</td>
-                <td>@loan.BookTitle</td>
-                <td>@(loan.LoanedOn.ToString("yyyy-MM-dd"))</td>
-                <td>@(loan.LoanedOn.AddDays(loan.DaysAllowed).ToString("yyyy-MM-dd"))</td>
-                <td>
-                    <span class="badge @(loan.Status == "Overdue" ? "text-bg-danger" : loan.Status == "Out" ? "text-bg-warning" : "text-bg-secondary")">
-                        @loan.Status
-                    </span>
-                </td>
-                <td class="text-end">
-                    @if (loan.ReturnedOn == null)
+<div class="card border-0 shadow-sm rounded-4">
+    <div class="card-body p-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="h5 fw-bold mb-0">Loan Records</h2>
+            <span class="badge rounded-pill text-bg-primary">
+                @Model.Count loans
+            </span>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Member</th>
+                        <th>Book</th>
+                        <th>Loaned</th>
+                        <th>Due date</th>
+                        <th>Status</th>
+                        <th class="text-end">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var loan in Model)
                     {
-                        <form asp-action="Return" asp-route-id="@loan.LoanId" method="post">
-                            <button type="submit" class="btn btn-sm btn-outline-success">Return</button>
-                        </form>
+                        <tr>
+                            <td class="fw-semibold">@loan.MemberName</td>
+                            <td>@loan.BookTitle</td>
+                            <td>@(loan.LoanedOn.ToString("yyyy-MM-dd"))</td>
+                            <td>@(loan.LoanedOn.AddDays(loan.DaysAllowed).ToString("yyyy-MM-dd"))</td>
+                            <td>
+                                @if (loan.Status == "Overdue")
+                                {
+                                    <span class="badge rounded-pill text-bg-danger">Overdue</span>
+                                }
+                                else if (loan.Status == "Out")
+                                {
+                                    <span class="badge rounded-pill text-bg-warning">Out</span>
+                                }
+                                else
+                                {
+                                    <span class="badge rounded-pill text-bg-success">Returned</span>
+                                }
+                            </td>
+                            <td class="text-end">
+                                @if (loan.ReturnedOn == null)
+                                {
+                                    <form asp-action="Return" asp-route-id="@loan.LoanId" method="post">
+                                        <button type="submit" class="btn btn-sm btn-outline-success rounded-pill px-3">
+                                            Return
+                                        </button>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <span class="text-muted small">Completed</span>
+                                }
+                            </td>
+                        </tr>
                     }
-                </td>
-            </tr>
+                </tbody>
+            </table>
+        </div>
+
+        @if (Model.Count == 0)
+        {
+            <p class="text-center text-muted py-4 mb-0">No loan records available yet.</p>
         }
-    </tbody>
-</table>
+    </div>
+</div>
