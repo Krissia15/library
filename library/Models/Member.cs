@@ -25,4 +25,6 @@ public class Member
 
 
     public string MemberType { get; set; } = "Regular";
+
+    public long OpenLoans { get; set; } // filled only by the member list; never saved
 }
