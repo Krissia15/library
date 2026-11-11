@@ -1,71 +1,172 @@
-html {
-  font-size: 14px;
+
+/* =================================
+   PINK LIBRARY - COQUETTE THEME 🎀
+   ================================= */
+
+:root {
+    --pink-main: #e88eae;
+    --pink-dark: #c95f88;
+    --pink-light: #fce4ed;
+    --pink-pale: #fff5f8;
+    --cream: #fffdfb;
+    --text-main: #694653;
+    --text-muted: #987987;
 }
 
-@media (min-width: 768px) {
-  html {
+/* General page */
+html {
     font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
-}
-
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
-}
-
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
-}
-/* Library system custom design */
-body {
-    background-color: #f4f6fb;
-    color: #26324a;
+    margin: 0;
+    margin-bottom: 60px;
+    background-color: var(--pink-pale);
+    color: var(--text-main);
     font-family: "Segoe UI", sans-serif;
 }
 
-h1 {
-    color: #243b70;
-    font-weight: 700;
-    margin-bottom: 20px;
+/* Navigation bar */
+.pink-navbar {
+    background: linear-gradient(135deg, #f5b6cc, #e88eae);
+    border-bottom: 3px solid #f9d3e0;
 }
 
+    .pink-navbar .navbar-brand {
+        color: white;
+        font-size: 1.4rem;
+        letter-spacing: 0.5px;
+    }
+
+        .pink-navbar .navbar-brand:hover {
+            color: #fff5f8;
+        }
+
+    .pink-navbar .nav-link {
+        color: white;
+        font-weight: 600;
+        border-radius: 20px;
+        padding: 8px 13px !important;
+        transition: 0.2s ease;
+    }
+
+        .pink-navbar .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            color: white;
+        }
+
+    .pink-navbar .navbar-toggler {
+        border-color: white;
+    }
+
+    .pink-navbar .navbar-toggler-icon {
+        filter: brightness(0) invert(1);
+    }
+
+/* Headings */
+h1, h2, h3, h4, h5 {
+    color: var(--pink-dark);
+    font-weight: 700;
+}
+
+/* Main container */
 .container {
-    padding-top: 20px;
+    padding-top: 10px;
+}
+
+/* Buttons */
+.btn {
+    border-radius: 20px;
+    font-weight: 600;
+    transition: 0.2s ease;
 }
 
 .btn-primary {
-    background-color: #3859a6;
-    border-color: #3859a6;
-    border-radius: 8px;
+    background-color: var(--pink-main);
+    border-color: var(--pink-main);
+    color: white;
 }
 
     .btn-primary:hover {
-        background-color: #243b70;
-        border-color: #243b70;
+        background-color: var(--pink-dark);
+        border-color: var(--pink-dark);
+        color: white;
     }
 
-.table {
-    background-color: white;
-    border-radius: 8px;
-    overflow: hidden;
+.btn-outline-primary {
+    color: var(--pink-dark);
+    border-color: var(--pink-main);
 }
 
-    .table thead th {
-        background-color: #243b70;
+    .btn-outline-primary:hover {
+        background-color: var(--pink-main);
+        border-color: var(--pink-main);
         color: white;
+    }
+
+.btn-outline-secondary {
+    color: var(--text-muted);
+    border-color: #e8cbd6;
+}
+
+    .btn-outline-secondary:hover {
+        background-color: #f8e0e9;
+        border-color: #e8cbd6;
+        color: var(--text-main);
+    }
+
+.btn-outline-danger,
+.btn-danger {
+    border-radius: 20px;
+}
+
+/* Cards */
+.card {
+    background-color: var(--cream);
+    border: 1px solid #f5dce5;
+    border-radius: 18px;
+}
+
+.shadow-sm {
+    box-shadow: 0 5px 18px rgba(201, 95, 136, 0.09) !important;
+}
+
+/* Forms */
+.form-control,
+.form-select {
+    border: 1px solid #efcbd9;
+    border-radius: 12px;
+    padding: 10px 13px;
+    color: var(--text-main);
+    background-color: white;
+}
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: var(--pink-main);
+        box-shadow: 0 0 0 0.2rem rgba(232, 142, 174, 0.2);
+    }
+
+.form-label {
+    color: var(--text-main);
+}
+
+/* Tables */
+.table {
+    background-color: var(--cream);
+    border-radius: 12px;
+    overflow: hidden;
+    color: var(--text-main);
+}
+
+    .table thead th,
+    .table thead.table-dark th,
+    .table thead.table-light th {
+        background-color: #f9dce7;
+        color: var(--pink-dark);
+        border-bottom: 2px solid #f1c5d6;
         padding: 14px;
     }
 
@@ -75,10 +176,120 @@ h1 {
     }
 
     .table tbody tr:hover {
-        background-color: #eaf0ff;
+        background-color: #fff0f5;
     }
 
+/* Status badges */
 .badge {
-    border-radius: 6px;
-    padding: 6px 9px;
+    border-radius: 20px;
+    padding: 7px 11px;
+    font-weight: 600;
+}
+
+.text-bg-primary {
+    background-color: var(--pink-main) !important;
+}
+
+.text-bg-secondary {
+    background-color: #d9b5c4 !important;
+}
+
+/* Alerts and validation messages */
+.alert-danger {
+    background-color: #fff0f2;
+    border-color: #f3c3d0;
+    color: #a33e60;
+    border-radius: 12px;
+}
+
+.text-danger {
+    color: #c94e76 !important;
+}
+
+.text-primary {
+    color: var(--pink-dark) !important;
+}
+
+/* Muted text */
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+/* Footer */
+.pink-footer {
+    background-color: #f8dce7;
+    border-top: 2px solid #f2c7d7;
+    color: var(--pink-dark);
+}
+
+/* Links */
+a {
+    color: var(--pink-dark);
+}
+
+    a:hover {
+        color: #a9436b;
+    }
+
+/* Focus accessibility */
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.2rem rgba(232, 142, 174, 0.25);
+}
+
+/* Mobile layout */
+@media (max-width: 767px) {
+    .pink-navbar .navbar-nav {
+        padding-top: 10px;
+    }
+
+    .pink-navbar .nav-link {
+        padding: 9px 12px !important;
+    }
+
+    /* Extra pink details 🎀 */
+
+    /* Soft pink table rows */
+    .table-striped > tbody > tr:nth-of-type(odd) > * {
+        background-color: #fff0f5;
+        color: #694653;
+    }
+
+    .table-striped > tbody > tr:nth-of-type(even) > * {
+        background-color: #fffafd;
+        color: #694653;
+    }
+
+    .table tbody tr:hover > * {
+        background-color: #fce4ed;
+        color: #694653;
+    }
+
+    /* Pink Delete buttons */
+    .btn-outline-danger {
+        color: #d45d87;
+        border-color: #e88eae;
+    }
+
+        .btn-outline-danger:hover {
+            background-color: #e88eae;
+            border-color: #e88eae;
+            color: white;
+        }
+
+    /* Softer category badges */
+    .text-bg-secondary {
+        background-color: #edb5ca !important;
+        color: #754257 !important;
+    }
+
+    /* Cute pink table corners */
+    .table {
+        border-radius: 16px;
+        overflow: hidden;
+    }
+
 }

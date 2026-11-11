@@ -1,27 +1,52 @@
 ﻿@model Member
+
 @{
     ViewData["Title"] = "Delete member";
 }
 
-<h1 class="mb-3">Delete member</h1>
+<div class="p-4 mb-4 rounded-4" style="background: #fff0f0;">
+    <p class="text-danger fw-semibold mb-1">MEMBER MANAGEMENT</p>
+    <h1 class="fw-bold mb-1 text-danger">Delete Member</h1>
+    <p class="text-muted mb-0">Please review the member information before continuing.</p>
+</div>
 
-<h3>Are you sure you want to delete this member?</h3>
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger rounded-3">
+        <strong>Unable to delete:</strong> @ViewBag.Error
+    </div>
+}
 
-<div class="card card-body" style="max-width:36rem">
-    <dl class="row">
-        <dt class="col-sm-4">Full Name</dt>
-        <dd class="col-sm-8">@Model.FullName</dd>
+<div class="card border-danger shadow-sm rounded-4" style="max-width: 36rem;">
+    <div class="card-body p-4">
+        <div class="alert alert-danger rounded-3">
+            <strong>Warning!</strong>
+            Are you sure you want to delete this member?
+        </div>
 
-        <dt class="col-sm-4">Email</dt>
-        <dd class="col-sm-8">@(Model.Email ?? "—")</dd>
+        <dl class="row mb-4">
+            <dt class="col-sm-4">Full Name</dt>
+            <dd class="col-sm-8">@Model.FullName</dd>
 
-        <dt class="col-sm-4">Member Type</dt>
-        <dd class="col-sm-8">@Model.MemberType</dd>
-    </dl>
+            <dt class="col-sm-4">Email</dt>
+            <dd class="col-sm-8">@(Model.Email ?? "—")</dd>
 
-    <form asp-action="Delete" method="post">
-        <input type="hidden" asp-for="MemberId" />
-        <button type="submit" class="btn btn-danger">Delete</button>
-        <a asp-action="Index" class="btn btn-link">Cancel</a>
-    </form>
+            <dt class="col-sm-4">Member Type</dt>
+            <dd class="col-sm-8">@Model.MemberType</dd>
+        </dl>
+
+        <form asp-action="Delete" method="post">
+            <input type="hidden" asp-for="MemberId" />
+
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-danger rounded-pill px-4">
+                    Delete member
+                </button>
+
+                <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-4">
+                    Cancel
+                </a>
+            </div>
+        </form>
+    </div>
 </div>
